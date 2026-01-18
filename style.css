@@ -1,23 +1,59 @@
+:root {
+    color-scheme: light;
+    --bg: #f3f5f9;
+    --text: #111827;
+    --card-bg: #ffffff;
+    --card-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --outline: #cbd5f5;
+    --muted: #eef1f6;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0b1120;
+    --text: #e2e8f0;
+    --card-bg: #111827;
+    --card-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    --primary: #60a5fa;
+    --primary-hover: #3b82f6;
+    --outline: #334155;
+    --muted: #1f2937;
+}
+
 body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: var(--bg);
+    color: var(--text);
     margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
     text-align: center;
-    background-color: white;
+    background-color: var(--card-bg);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--card-shadow);
+    min-width: min(90vw, 520px);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
 }
 
 h1 {
     margin-bottom: 2rem;
+    font-size: 1.6rem;
 }
 
 button {
@@ -26,18 +62,33 @@ button {
     font-size: 1rem;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: var(--primary);
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
 }
 
 lotto-numbers {
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+
+.theme-toggle {
+    margin-top: 0;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.9rem;
+    border-radius: 999px;
+    background-color: transparent;
+    color: var(--text);
+    border: 1px solid var(--outline);
+}
+
+.theme-toggle:hover {
+    background-color: var(--muted);
 }

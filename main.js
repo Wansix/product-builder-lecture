@@ -53,6 +53,24 @@ customElements.define('lotto-numbers', LottoNumbers);
 
 const generateButton = document.getElementById('generate');
 const lottoNumbersElement = document.querySelector('lotto-numbers');
+const themeToggle = document.getElementById('theme-toggle');
+
+function applyTheme(theme) {
+  const isDark = theme === 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  themeToggle.setAttribute('aria-pressed', String(isDark));
+  themeToggle.textContent = isDark ? '화이트 모드' : '다크 모드';
+}
+
+function initTheme() {
+  const storedTheme = localStorage.getItem('theme');
+  if (storedTheme === 'dark' || storedTheme === 'light') {
+    applyTheme(storedTheme);
+    return;
+  }
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(prefersDark ? 'dark' : 'light');
+}
 
 function generateLottoNumbers() {
   const numbers = new Set();
@@ -64,6 +82,13 @@ function generateLottoNumbers() {
 }
 
 generateButton.addEventListener('click', generateLottoNumbers);
+themeToggle.addEventListener('click', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', nextTheme);
+  applyTheme(nextTheme);
+});
 
 // Generate numbers on initial load
+initTheme();
 generateLottoNumbers();
