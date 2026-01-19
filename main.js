@@ -1,59 +1,27 @@
-class LottoNumbers extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.innerHTML = `
-      <style>
-        .lotto-numbers {
-          display: flex;
-          gap: 10px;
-          margin: 20px 0;
-        }
-        .number {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 1.5rem;
-          font-weight: bold;
-          color: white;
-          background-color: #ccc;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-      </style>
-      <div class="lotto-numbers">
-      </div>
-    `;
-  }
-
-  setNumbers(numbers) {
-    const container = this.shadowRoot.querySelector('.lotto-numbers');
-    container.innerHTML = '';
-    for (const number of numbers) {
-      const circle = document.createElement('div');
-      circle.className = 'number';
-      circle.textContent = number;
-      circle.style.backgroundColor = this.getColor(number);
-      container.appendChild(circle);
-    }
-  }
-
-  getColor(number) {
-    if (number <= 10) return '#fbc400'; // Yellow
-    if (number <= 20) return '#69c8f2'; // Blue
-    if (number <= 30) return '#ff7272'; // Red
-    if (number <= 40) return '#aaa';     // Gray
-    return '#b0d840';      // Green
-  }
-}
-
-customElements.define('lotto-numbers', LottoNumbers);
-
 const generateButton = document.getElementById('generate');
-const lottoNumbersElement = document.querySelector('lotto-numbers');
+const menuResult = document.getElementById('menu-result');
 const themeToggle = document.getElementById('theme-toggle');
+const lunchMenus = [
+  '김치찌개',
+  '된장찌개',
+  '제육볶음',
+  '비빔밥',
+  '돈까스',
+  '칼국수',
+  '쌀국수',
+  '냉면',
+  '불고기',
+  '치킨샐러드',
+  '샌드위치',
+  '초밥',
+  '파스타',
+  '마라탕',
+  '카레',
+  '토스트',
+  '라면',
+  '우동'
+];
+let lastRecommendation = '';
 
 function applyTheme(theme) {
   const isDark = theme === 'dark';
@@ -72,16 +40,22 @@ function initTheme() {
   applyTheme(prefersDark ? 'dark' : 'light');
 }
 
-function generateLottoNumbers() {
-  const numbers = new Set();
-  while (numbers.size < 6) {
-    const randomNumber = Math.floor(Math.random() * 45) + 1;
-    numbers.add(randomNumber);
+function recommendLunch() {
+  if (lunchMenus.length === 0) {
+    menuResult.textContent = '메뉴 목록이 비어 있어요.';
+    return;
   }
-  lottoNumbersElement.setNumbers([...numbers].sort((a, b) => a - b));
+  let nextMenu = lunchMenus[Math.floor(Math.random() * lunchMenus.length)];
+  if (lunchMenus.length > 1) {
+    while (nextMenu === lastRecommendation) {
+      nextMenu = lunchMenus[Math.floor(Math.random() * lunchMenus.length)];
+    }
+  }
+  lastRecommendation = nextMenu;
+  menuResult.textContent = nextMenu;
 }
 
-generateButton.addEventListener('click', generateLottoNumbers);
+generateButton.addEventListener('click', recommendLunch);
 themeToggle.addEventListener('click', () => {
   const currentTheme = document.documentElement.getAttribute('data-theme');
   const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -89,6 +63,6 @@ themeToggle.addEventListener('click', () => {
   applyTheme(nextTheme);
 });
 
-// Generate numbers on initial load
+// Generate recommendation on initial load
 initTheme();
-generateLottoNumbers();
+recommendLunch();
