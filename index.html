@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="점심 메뉴 고민을 줄여주는 추천 서비스. 추천 기준, 메뉴 목록, 점심 팁과 운영 정책을 확인하세요.">
   <meta name="google-adsense-account" content="ca-pub-3850681190115705">
   <title>Lunch Menu Picker</title>
   <link href='/style.css' rel='stylesheet'>
@@ -10,19 +11,97 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>오늘 점심 뭐 먹지?</h1>
+  <header class="site-header">
+    <div class="header-inner">
+      <div>
+        <p class="eyebrow">Lunch Menu Picker</p>
+        <h1>오늘 점심 뭐 먹지?</h1>
+        <p class="lead">점심 고민을 빠르게 줄이는 메뉴 추천 서비스입니다. 추천 기준과 운영 정책을 함께 확인하세요.</p>
+      </div>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
         다크 모드
       </button>
     </div>
-    <div class="menu-card" aria-live="polite">
+    <nav class="site-nav" aria-label="페이지 섹션">
+      <a href="#picker">추천받기</a>
+      <a href="#about">서비스 소개</a>
+      <a href="#criteria">추천 기준</a>
+      <a href="#menus">메뉴 목록</a>
+      <a href="#tips">점심 팁</a>
+      <a href="#faq">FAQ</a>
+      <a href="#partner">제휴 문의</a>
+      <a href="#policy">운영 정책</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="picker" class="card highlight" aria-live="polite">
       <div class="menu-label">추천 메뉴</div>
       <div id="menu-result" class="menu-result">버튼을 눌러 추천받기</div>
-    </div>
-    <button id="generate">추천 받기</button>
-    <section class="partner-form">
+      <button id="generate">추천 받기</button>
+      <p class="note">메뉴는 중복을 최소화해 추천됩니다. 오늘 상황에 맞게 자유롭게 바꿔보세요.</p>
+    </section>
+
+    <section id="about" class="card">
+      <h2>서비스 소개</h2>
+      <p>Lunch Menu Picker는 바쁜 점심 시간에 선택 부담을 줄여주기 위해 만든 간단한 추천 도구입니다. 빠르게 결정하고, 남는 시간을 여유롭게 활용할 수 있도록 돕습니다.</p>
+      <p>모든 추천은 내부에 정리된 메뉴 리스트를 기반으로 제공되며, 추천 기준과 메뉴 목록을 투명하게 공개합니다.</p>
+    </section>
+
+    <section id="criteria" class="card">
+      <h2>추천 기준</h2>
+      <div class="criteria-grid">
+        <div>
+          <h3>속도</h3>
+          <p>혼잡한 점심 시간에도 빠르게 주문할 수 있는 메뉴를 우선 고려합니다.</p>
+        </div>
+        <div>
+          <h3>균형</h3>
+          <p>한식, 양식, 아시안 등 다양한 카테고리를 골고루 추천합니다.</p>
+        </div>
+        <div>
+          <h3>만족도</h3>
+          <p>익숙하면서도 실패 확률이 낮은 메뉴를 중심으로 리스트를 구성합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="menus" class="card">
+      <h2>메뉴 목록</h2>
+      <p>현재 추천 가능한 메뉴는 아래와 같습니다. 리스트는 시즌에 맞게 순차적으로 업데이트됩니다.</p>
+      <div class="menu-tags">
+        <span>김치찌개</span><span>된장찌개</span><span>제육볶음</span><span>비빔밥</span><span>돈까스</span><span>칼국수</span>
+        <span>쌀국수</span><span>냉면</span><span>불고기</span><span>치킨샐러드</span><span>샌드위치</span><span>초밥</span>
+        <span>파스타</span><span>마라탕</span><span>카레</span><span>토스트</span><span>라면</span><span>우동</span>
+      </div>
+    </section>
+
+    <section id="tips" class="card">
+      <h2>점심 팁</h2>
+      <ul class="info-list">
+        <li>점심 시간 30분 전 미리 주문하면 대기 시간을 줄일 수 있습니다.</li>
+        <li>매운 메뉴는 오후 일정이 많은 날 피하는 것이 좋습니다.</li>
+        <li>샐러드나 국수류는 오후 집중력을 높이는 데 도움이 됩니다.</li>
+      </ul>
+    </section>
+
+    <section id="faq" class="card">
+      <h2>자주 묻는 질문</h2>
+      <details>
+        <summary>추천은 어떻게 결정되나요?</summary>
+        <p>메뉴 리스트에서 중복을 최소화해 무작위로 추천합니다.</p>
+      </details>
+      <details>
+        <summary>메뉴 목록을 제안할 수 있나요?</summary>
+        <p>제휴 문의 폼을 통해 추천하고 싶은 메뉴를 알려주세요.</p>
+      </details>
+      <details>
+        <summary>광고는 어떻게 표시되나요?</summary>
+        <p>Google AdSense 정책을 준수하며 사용자 경험을 해치지 않는 범위에서 노출됩니다.</p>
+      </details>
+    </section>
+
+    <section id="partner" class="card partner-form">
       <h2>제휴 문의</h2>
       <form action="https://formspree.io/f/mzddrgbo" method="POST">
         <label>
@@ -40,7 +119,8 @@
         <button type="submit" class="submit-button">보내기</button>
       </form>
     </section>
-    <section class="comments">
+
+    <section id="comments" class="card comments">
       <h2>댓글</h2>
       <div id="disqus_thread"></div>
       <script>
@@ -62,7 +142,30 @@
       </script>
       <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </section>
-  </div>
+  </main>
+
+  <footer id="policy" class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <h2>운영 정책</h2>
+        <p>본 서비스는 점심 메뉴 추천을 위한 정보 제공 목적의 사이트입니다. 추천 결과는 참고용이며, 최종 선택은 사용자 책임으로 이루어집니다.</p>
+      </div>
+      <div>
+        <h3>개인정보 처리방침</h3>
+        <p>문의 폼에 입력된 정보는 답변 목적 외에 사용하지 않습니다. 저장된 정보는 문의 처리 완료 후 일정 기간 내에 파기됩니다.</p>
+      </div>
+      <div>
+        <h3>이용약관</h3>
+        <p>사이트 내 콘텐츠의 무단 복제 및 재배포를 금지합니다. 문의는 이메일로만 접수합니다.</p>
+      </div>
+      <div>
+        <h3>문의</h3>
+        <p>운영자: Lunch Menu Picker</p>
+        <p>이메일: hello@lunchmenu.example</p>
+      </div>
+    </div>
+    <small>© 2024 Lunch Menu Picker. All rights reserved.</small>
+  </footer>
   <script defer type="text/javascript" src="/main.js"></script>
 </body>
 </html>
