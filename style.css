@@ -78,6 +78,46 @@ h1 {
     font-weight: 700;
 }
 
+.partner-form {
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.partner-form h2 {
+    margin: 0 0 1rem;
+    font-size: 1.2rem;
+}
+
+.partner-form form {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.partner-form label {
+    display: grid;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.partner-form input,
+.partner-form textarea {
+    padding: 0.7rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--outline);
+    background-color: var(--card-bg);
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.partner-form textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    margin-top: 0.5rem;
+    width: 100%;
+}
+
 button {
     margin-top: 2rem;
     padding: 0.8rem 1.5rem;
