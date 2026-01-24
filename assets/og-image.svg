@@ -1,36 +1,25 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Lunch Menu Picker</title>
-  <desc id="desc">오늘 점심 메뉴를 빠르게 추천하는 서비스</desc>
+  <title id="title">GEO 최적화 플레이북</title>
+  <desc id="desc">AI 검색 시대를 위한 GEO 최적화 전략 가이드</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fff3c4" />
-      <stop offset="50%" stop-color="#ffd6a5" />
-      <stop offset="100%" stop-color="#ffad7a" />
+      <stop offset="0%" stop-color="#f9f5eb" />
+      <stop offset="55%" stop-color="#eef2ed" />
+      <stop offset="100%" stop-color="#e6efe9" />
     </linearGradient>
     <linearGradient id="chip" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1f3a5f" />
-      <stop offset="100%" stop-color="#2b7a78" />
+      <stop offset="0%" stop-color="#0f2a24" />
+      <stop offset="100%" stop-color="#3f6f61" />
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)" />
-  <rect x="90" y="90" width="1020" height="450" rx="36" fill="#ffffff" fill-opacity="0.85" />
-  <rect x="130" y="140" width="220" height="48" rx="24" fill="url(#chip)" />
-  <text x="240" y="173" text-anchor="middle" font-family="'Pretendard', 'Noto Sans KR', sans-serif" font-size="22" fill="#ffffff">점심 메뉴 추천</text>
-  <text x="130" y="270" font-family="'Pretendard', 'Noto Sans KR', sans-serif" font-size="60" fill="#1f2933" font-weight="700">오늘 점심 뭐 먹지?</text>
-  <text x="130" y="340" font-family="'Pretendard', 'Noto Sans KR', sans-serif" font-size="32" fill="#334e68">Lunch Menu Picker</text>
-  <g fill="#1f3a5f" opacity="0.8">
-    <circle cx="930" cy="210" r="10" />
-    <circle cx="980" cy="210" r="10" />
-    <circle cx="1030" cy="210" r="10" />
-  </g>
-  <g fill="#ff8f5a" opacity="0.8">
-    <circle cx="930" cy="250" r="10" />
-    <circle cx="980" cy="250" r="10" />
-    <circle cx="1030" cy="250" r="10" />
-  </g>
-  <g fill="#2b7a78" opacity="0.8">
-    <circle cx="930" cy="290" r="10" />
-    <circle cx="980" cy="290" r="10" />
-    <circle cx="1030" cy="290" r="10" />
-  </g>
+  <circle cx="100" cy="120" r="70" fill="#f07b63" fill-opacity="0.2" />
+  <circle cx="1080" cy="100" r="90" fill="#3f6f61" fill-opacity="0.18" />
+  <rect x="90" y="90" width="1020" height="450" rx="36" fill="#ffffff" fill-opacity="0.88" />
+  <rect x="130" y="140" width="260" height="48" rx="24" fill="url(#chip)" />
+  <text x="260" y="173" text-anchor="middle" font-family="'Space Grotesk', 'Noto Sans KR', sans-serif" font-size="22" fill="#ffffff">GEO Playbook</text>
+  <text x="130" y="275" font-family="'Space Grotesk', 'Noto Sans KR', sans-serif" font-size="58" fill="#0f1f1b" font-weight="700">GEO 최적화 플레이북</text>
+  <text x="130" y="345" font-family="'Noto Sans KR', sans-serif" font-size="30" fill="#375049">AI 검색 시대를 위한 전략과 체크리스트</text>
+  <rect x="130" y="390" width="440" height="12" rx="6" fill="#e6efe9" />
+  <rect x="130" y="390" width="240" height="12" rx="6" fill="#0f2a24" />
 </svg>

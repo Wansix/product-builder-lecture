@@ -1,68 +1,55 @@
-const generateButton = document.getElementById('generate');
-const menuResult = document.getElementById('menu-result');
-const themeToggle = document.getElementById('theme-toggle');
-const lunchMenus = [
-  '김치찌개',
-  '된장찌개',
-  '제육볶음',
-  '비빔밥',
-  '돈까스',
-  '칼국수',
-  '쌀국수',
-  '냉면',
-  '불고기',
-  '치킨샐러드',
-  '샌드위치',
-  '초밥',
-  '파스타',
-  '마라탕',
-  '카레',
-  '토스트',
-  '라면',
-  '우동'
-];
-let lastRecommendation = '';
+const scrollButtons = document.querySelectorAll('[data-scroll]');
+const copyButtons = document.querySelectorAll('[data-copy-target]');
+const checklist = document.querySelector('[data-checklist]');
 
-function applyTheme(theme) {
-  const isDark = theme === 'dark';
-  document.documentElement.setAttribute('data-theme', theme);
-  themeToggle.setAttribute('aria-pressed', String(isDark));
-  themeToggle.textContent = isDark ? '화이트 모드' : '다크 모드';
-}
-
-function initTheme() {
-  const storedTheme = localStorage.getItem('theme');
-  if (storedTheme === 'dark' || storedTheme === 'light') {
-    applyTheme(storedTheme);
-    return;
-  }
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(prefersDark ? 'dark' : 'light');
-}
-
-function recommendLunch() {
-  if (lunchMenus.length === 0) {
-    menuResult.textContent = '메뉴 목록이 비어 있어요.';
-    return;
-  }
-  let nextMenu = lunchMenus[Math.floor(Math.random() * lunchMenus.length)];
-  if (lunchMenus.length > 1) {
-    while (nextMenu === lastRecommendation) {
-      nextMenu = lunchMenus[Math.floor(Math.random() * lunchMenus.length)];
-    }
-  }
-  lastRecommendation = nextMenu;
-  menuResult.textContent = nextMenu;
-}
-
-generateButton.addEventListener('click', recommendLunch);
-themeToggle.addEventListener('click', () => {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('theme', nextTheme);
-  applyTheme(nextTheme);
+scrollButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const targetId = button.getAttribute('data-scroll');
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 });
 
-// Generate recommendation on initial load
-initTheme();
-recommendLunch();
+copyButtons.forEach((button) => {
+  button.addEventListener('click', async () => {
+    const targetId = button.getAttribute('data-copy-target');
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    const text = target.innerText.trim();
+
+    try {
+      await navigator.clipboard.writeText(text);
+      const original = button.textContent;
+      button.textContent = '복사 완료';
+      setTimeout(() => {
+        button.textContent = original;
+      }, 1400);
+    } catch (error) {
+      button.textContent = '복사 실패';
+      setTimeout(() => {
+        button.textContent = '다시 복사';
+      }, 1400);
+    }
+  });
+});
+
+if (checklist) {
+  const checkboxes = Array.from(checklist.querySelectorAll('input[type="checkbox"]'));
+  const progressBar = checklist.querySelector('.progress-bar span');
+  const progressText = checklist.querySelector('.progress-text');
+
+  const updateProgress = () => {
+    const total = checkboxes.length;
+    const checked = checkboxes.filter((box) => box.checked).length;
+    const percent = total === 0 ? 0 : Math.round((checked / total) * 100);
+    progressBar.style.width = `${percent}%`;
+    progressText.textContent = `${checked}/${total} 완료 (${percent}%)`;
+  };
+
+  checkboxes.forEach((box) => {
+    box.addEventListener('change', updateProgress);
+  });
+
+  updateProgress();
+}
